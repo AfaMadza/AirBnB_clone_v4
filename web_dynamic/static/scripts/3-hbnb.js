@@ -9,9 +9,10 @@ window.onload = (function () {
     }
     $(".amenities h4").text(Object.values(storing).join(', '));
   });
-  $.get(url, function (data, status) {
-    if (status === 'success') {
-      $('#api_status').addClass('available');
-    }
-  });
+});
+
+$.get(url, function (data) {
+  if (status === 'success') {
+    $('DIV#api_status').addClass('available');
+  }
 });
