@@ -1,5 +1,5 @@
 let storing = {};
-const url = 'http://0.0.0.0:5001/api/v1/status/';
+const url = 'http://localhost:5001/api/v1/status/';
 window.onload = (function () {
   $("input[type=checkbox]").click(function () {
     if(this.checked) {
@@ -9,10 +9,39 @@ window.onload = (function () {
     }
     $(".amenities h4").text(Object.values(storing).join(', '));
   });
-});
-
-$.get(url, function (data) {
-  if (status === 'success') {
-    $('DIV#api_status').addClass('available');
-  }
+  $.get(url, function (data, status) {
+    if (status === 'success') {
+      $('#api_status').addClass('available');
+    }
+  });
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:5001/api/v1/places_search/",
+    dataType: "json",
+    contentType: "application/json",
+    data: '{}',
+    success: function (data, status, jQxhr) {
+      for (let i = 0; i < data.length; i++) {
+	let eachplace = data[i];
+	$(".places").append('<article><div class="title"><h2>'
+				   + eachplace.name
+				   + '</h2><div class="price_by_night">$'
+				   + eachplace.price_by_night
+				   + '</div></div><div class="information"><div class="max_guest"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br />'
+				   + eachplace.max_guest
+				   + ' Guests'
+				   + '</div><div class="number_rooms"><i class="fa fa-bed fa-3x" aria-hidden="true"></i><br />'
+				   + eachplace.number_rooms
+				   + ' Bedrooms'
+				   + '</div><div class="number_bathrooms"><i class="fa fa-bath fa-3x" aria-hidden="true"></i><br />'
+				   + eachplace.number_bathrooms
+				   + ' Bathroom'
+				   + '</div></div><div class="user"><strong>Owner: '
+//				   + users[place.user_id]
+				   +'</strong></div><div class="description">'
+				   + eachplace.description
+				   + '</div></article>');
+      }
+    }
+  });
 });
