@@ -23,6 +23,7 @@ window.onload = (function () {
     success: function (data, status, jQxhr) {
       for (let i = 0; i < data.length; i++) {
 	let eachplace = data[i];
+	console.log(eachplace);
 	$(".places").append('<article><div class="title"><h2>'
 				   + eachplace.name
 				   + '</h2><div class="price_by_night">$'
