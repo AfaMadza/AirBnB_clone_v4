@@ -48,7 +48,7 @@ window.onload = (function () {
 				   +'</strong></div><div class="description">'
 				   + eachplace.description
 				   + '</div></article>');
+	}
       }
-    }
+    });
   });
-});
