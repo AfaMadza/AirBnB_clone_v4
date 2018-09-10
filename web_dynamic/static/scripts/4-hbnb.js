@@ -75,5 +75,7 @@ window.onload = (function () {
 			      + eachplace.description
 			      + '</div></article>');
 	}
-      };
+      }
+    })
+  })
 });
