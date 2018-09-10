@@ -1,5 +1,5 @@
 let storing = {};
-const url = 'http://localhost:5001/api/v1/status/';
+const url = 'http://0.0.0.0:5001/api/v1/status/';
 window.onload = (function () {
   $("input[type=checkbox]").click(function () {
     if(this.checked) {
@@ -22,7 +22,7 @@ window.onload = (function () {
   });
   $.ajax({
     type: "POST",
-    url: "http://localhost:5001/api/v1/places_search/",
+    url: "http://0.0.0.0:5001/api/v1/places_search/",
     dataType: "json",
     contentType: "application/json",
     data: '{}',
@@ -55,7 +55,7 @@ window.onload = (function () {
     $('.places article').remove();
     $.ajax({
       type: "POST",
-      url: "http://localhost:5001/api/v1/places_search/",
+      url: "http://0.0.0.0:5001/api/v1/places_search/",
       dataType: "json",
       contentType: "application/json",
       data: JSON.stringify({"amenities": Object.keys(storing)}),
